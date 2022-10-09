@@ -8,7 +8,9 @@
     --CYellow: #FCEE0C;
 }
 body {
-    background-color:#191919;
+    background-color: #191919;
+    font-family: monospace;
+    font-size: 18px;
 }
 
 .logoImg {

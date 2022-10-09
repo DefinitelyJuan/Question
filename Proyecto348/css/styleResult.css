@@ -20,8 +20,22 @@ h1 {
     color: var(--Lavender);
     animation: neonPink 1.5s ease-in-out infinite alternate;
 }
-a{
-
+h3 {
+    text-shadow: 0 0 12px var(--Lavender);
+    color: var(--Lavender);
+}
+a {
+    color: var(--CYellow);
+    text-shadow: 0 0 6px var(--CYellow);
+    transition: 1s;
+}
+    a:hover {
+        text-shadow: 0 0 12px var(--CYellow);
+        color: var(--CYellow);
+    }
+p{
+    color: var(--Lavender);
+    text-shadow: 0 0 8px #ff00de;
 }
 .h100{
     height:100vh;
@@ -43,6 +57,49 @@ a{
     color: var(--CYellow);
 }
 
+.cardContainer {
+    background-color: var(--bgColor) !important;
+    width: 30rem;
+}
+
+.btnBuscar {
+    color: #ff00de;
+    border: 2px solid #ff00de;
+    border-radius: 50px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 15px #ff00de) drop-shadow(0 0 50px #ff00de);
+    transition: .5s;
+}
+    .btnBuscar:hover {
+        color: var(--Lavender);
+        background-color: #ff00de;
+        filter: drop-shadow(0 0 20px #ff00de);
+        border: 2px solid #ff00de;
+    }
+}
+.searchBar{
+    background-color:var(--bgColor) !important;
+}
+.activeSO {
+    color: var(--CYellow);
+    text-shadow: 0 0 6px var(--CYellow);
+    transition: 1s;
+}
+.activeSO:hover{
+    color: var(--CYellow);
+    text-shadow: 0 0 12px var(--CYellow);
+    transition: 1s;
+}
+.inactiveSO {
+    color: var(--Lavender) !important;
+    text-shadow: 0 0 6px var(--Lavender) !important;
+    transition: 1s;
+}
+    .hi:hover {
+        color: var(--Lavender) !important;
+        text-shadow: 0 0 12px var(--Lavender) !important;
+        transition: 1s;
+    }
 @keyframes neonPink {
     from {
         text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;

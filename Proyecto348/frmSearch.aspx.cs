@@ -78,6 +78,7 @@ namespace Proyecto348
                 Response.Cookies["recentSearches"].Expires = DateTime.Now.AddDays(1);
 
             }
+            Session["SearchString"] =searchString;
             Response.Redirect("Resultados.aspx");
         }
     }

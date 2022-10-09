@@ -29,13 +29,10 @@
                 <div class="textBox row h-25 my-4">
                     <asp:TextBox ID="txtSearchString" ClientIDMode="Static" runat="server" CssClass="txt form-control" data-toggle="popover" tabindex="-1" data-trigger="focus" data-placement="top" title="hol" data-content="hola"></asp:TextBox>
                 </div>
-                <div class="row h-25 d-flex justify-content-center">
-                    <div class="col-md-4">
-                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar texto" cssClass="btn btn-primary btnBuscar" OnClick="btnBuscar_Click"/>
-                    </div>
-                    <div class="col-md-4">
-                        <asp:Button ID="btnImgBuscar" runat="server" Text="Buscar imagen" cssClass="btn btn-primary btnBuscar"/>
-                    </div>                     
+                <div class="row h-25 d-flex justify-content-center mx-auto w-50">
+                    
+                        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" cssClass="btn btn-primary btn-lg btnBuscar" OnClick="btnBuscar_Click"/>
+                                       
                </div>
                 </div>
                
