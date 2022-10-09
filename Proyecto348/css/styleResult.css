@@ -1,0 +1,54 @@
+﻿:root {
+    --MediumOrchid: #c252e1;
+    --Lavender: #e0d9f6;
+    --RoyalBlue: #03d8f3;
+    --LightSky: #6ECBF5;
+    --bgColor: #191919;
+    --whiteish: #F4F4F4;
+    --CYellow: #FCEE0C;
+}
+body {
+    background-color: var(--bgColor);
+}
+.pCustom {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--Lavender);
+    text-shadow: 0 0 8px #ff00de;
+}
+h1 {
+    color: var(--Lavender);
+    animation: neonPink 1.5s ease-in-out infinite alternate;
+}
+a{
+
+}
+.h100{
+    height:100vh;
+}
+
+.resultLink{
+    width:fit-content; 
+}
+.resultContainer{
+
+}
+.returnToMainLink {
+    color: var(--CYellow);
+    text-shadow: 0 0 6px var(--CYellow);
+    transition: 1s;
+}
+.returnToMainLink:hover {
+    text-shadow: 0 0 12px var(--CYellow);
+    color: var(--CYellow);
+}
+
+@keyframes neonPink {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+    }
+}
