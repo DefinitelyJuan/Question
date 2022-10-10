@@ -17,25 +17,31 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark searchBar" runat="server" id="searchNav">
-            <asp:LinkButton ID="lbAll" runat="server" CssClass="activeSO">Todos</asp:LinkButton>
-            <asp:LinkButton ID="lbImage" runat="server" CssClass="inactiveSO">Imagenes</asp:LinkButton>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="row my-2 my-lg-0">
-                <div class="col-md-4">
-                <asp:TextBox ID="txtSearch" runat="server" cssClass="form-control mr-sm-2" placeholder="Buscar" aria-label="Buscar"></asp:TextBox>
+        <div class=""> 
+            <nav class="navbar navbar-dark bg-dark searchBar d-flex justify-content-between fixed-top" runat="server" id="searchNav">
+            <div class="col">
+                 <asp:LinkButton ID="lbAll" runat="server" CssClass="btn btn-outline-primary btnBuscarActive" OnClick="lbAll_Click" >Todos</asp:LinkButton>
+                <asp:LinkButton ID="lbImage" runat="server" CssClass="btn btn-outline-primary btnBuscarInactive" OnClick="lbImage_Click">Imagenes</asp:LinkButton>
+            
+            </div>
+           <div class="row">
+                <div class="col-md-6">
+                <asp:TextBox ID="txtSearch" runat="server" cssClass="form-control txt" aria-label="Buscar"></asp:TextBox>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                      <asp:Button ID="btnBuscar" runat="server" Text="Buscar" cssClass="btn btn-outline-primary btnBuscar" OnClick="btnBuscar_Click"/>
 
                 </div>
 
             </div>
-          </div>
+
+
         </nav>
         <div class="" runat="server" id="main">
         </div>
+        </div>
+
     </form>
 </body>
 </html>

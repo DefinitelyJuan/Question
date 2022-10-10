@@ -12,8 +12,11 @@ namespace Proyecto348
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (Request.Cookies["RecentSearches"] != null)
             {
+                Response.Cookies["recentSearches"].Expires = DateTime.Now.AddDays(1);
+
                 string recentSearches = Request.Cookies["RecentSearches"].Value;
                 List<string> searchesList = recentSearches.Split(',').ToList();
                 recentSearches = "";

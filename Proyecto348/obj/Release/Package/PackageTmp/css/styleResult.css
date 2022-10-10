@@ -63,43 +63,87 @@ p{
 }
 
 .btnBuscar {
-    color: #ff00de;
-    border: 2px solid #ff00de;
+    color: var(--Lavender);
+    border: 2px solid #ff52e9;
     border-radius: 50px;
     cursor: pointer;
-    filter: drop-shadow(0 0 15px #ff00de) drop-shadow(0 0 50px #ff00de);
+    filter: drop-shadow(0 0 15px #ff52e9) drop-shadow(0 0 50px #ff52e9);
     transition: .5s;
 }
     .btnBuscar:hover {
         color: var(--Lavender);
-        background-color: #ff00de;
-        filter: drop-shadow(0 0 20px #ff00de);
-        border: 2px solid #ff00de;
+        background-color: #ff52e9;
+        filter: drop-shadow(0 0 20px #ff52e9);
+        border: 2px solid #ff52e9;
     }
+.btnBuscarInactive {
+    color: var(--Lavender);
+    border: 2px solid #ff52e9;
+    border-radius: 50px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 15px #ff52e9) drop-shadow(0 0 50px #ff52e9);
+    transition: .5s;
 }
+
+    .btnBuscarInactive:hover {
+        color: var(--Lavender);
+        background-color: #ff52e9;
+        filter: drop-shadow(0 0 20px #ff52e9);
+        border: 2px solid #ff52e9;
+    }
+.btnBuscarActive {
+    color: #000000;
+    border: 2px solid var(--CYellow);
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: var(--CYellow);
+    filter: drop-shadow(0 0 20px var(--CYellow));
+    transition: .5s;
+}
+
+    .btnBuscarActive:hover {
+        color: #000000;
+        background-color: var(--CYellow);
+        filter: drop-shadow(0 0 15px var(--CYellow)) drop-shadow(0 0 50px var(--CYellow));
+        border: 2px solid var(--CYellow);
+    }
+
+
 .searchBar{
-    background-color:var(--bgColor) !important;
+
 }
-.activeSO {
-    color: var(--CYellow);
-    text-shadow: 0 0 6px var(--CYellow);
-    transition: 1s;
+
+.textBox {
+    background-color: var(--bgColor);
+    border-radius: 50px;
 }
-.activeSO:hover{
-    color: var(--CYellow);
-    text-shadow: 0 0 12px var(--CYellow);
-    transition: 1s;
+
+.txt {
+    background-color: var(--bgColor);
+    border: none;
+    border-radius: 50px;
+    color: var(--whiteish);
+    text-shadow: 0 0 2px #fff;
+    box-shadow: 0 0 10px var(--MediumOrchid);
 }
-.inactiveSO {
-    color: var(--Lavender) !important;
-    text-shadow: 0 0 6px var(--Lavender) !important;
-    transition: 1s;
-}
-    .hi:hover {
-        color: var(--Lavender) !important;
-        text-shadow: 0 0 12px var(--Lavender) !important;
-        transition: 1s;
+
+    .txt:active {
+        background-color: var(--bgColor);
+        border: none;
+        box-shadow: 0 0 20px var(--CYellow);
+        color: var(--whiteish);
     }
+
+    .txt:focus {
+        background-color: var(--bgColor);
+        border: none;
+        box-shadow: 0 0 20px var(--CYellow);
+        color: var(--whiteish);
+    }
+
+.main {
+    margin-top: 4rem;
+}
 @keyframes neonPink {
     from {
         text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;

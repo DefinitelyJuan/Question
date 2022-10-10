@@ -38,11 +38,11 @@
                
             </div>
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 px-4 h-10">
-                <p class="col-md-4 mb-0">© 2022 Juan Avila 1100378</p>
+                <p class="col-md-4 mb-0">© 2022 Grupo I</p>
 
 
                 <ul class="nav col-md-4 justify-content-end">
-                  <li class=""><a href="aboutus.html" class="px-2 text-decoration-none">Sobre Nosotros</a></li>
+                  <li class=""><a href="#" class="px-2 text-decoration-none">Sobre Nosotros</a></li>
                 </ul>
            </footer>
         </div>
