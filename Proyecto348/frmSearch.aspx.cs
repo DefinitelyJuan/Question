@@ -79,6 +79,7 @@ namespace Proyecto348
 
             }
             Session["SearchString"] =searchString;
+            Session["SearchType"] = "Todo";
             Response.Redirect("Resultados.aspx");
         }
     }

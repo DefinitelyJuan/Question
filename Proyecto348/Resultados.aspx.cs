@@ -16,14 +16,19 @@ namespace Proyecto348
         protected void Page_Load(object sender, EventArgs e)
         {
             //searchNav.Visible = false;
-            if(Session["searchResults"] != null)
+            if (Session["SearchType"] != null)
             {
+                string searchType = (string)Session["SearchType"];
                 searchNav.Visible = true;
-                DataTable searchResults = (DataTable)Session["searchResults"];
                 txtSearch.Text = (string)Session["SearchString"];
-                foreach (DataRow result in searchResults.Rows)
+                if (searchType == "Todo")
                 {
-                    main.InnerHtml += $@"
+                    if (Session["searchResults"] != null)
+                    {
+                        DataTable searchResults = (DataTable)Session["searchResults"];
+                        foreach (DataRow result in searchResults.Rows)
+                        {
+                            main.InnerHtml += $@"
     <div class=""card cardContainer mx-4"">
         <div class=""card-body"">
                 <h3 class=""card-title"">{result["title"]}</h3>
@@ -32,16 +37,41 @@ namespace Proyecto348
         </div>
     </div>
 ";
-                }
- 
-                
+                        }
 
+
+
+                    }
+                }
+                else
+                {
+                    ppImgBusquedaTableAdapter index = new ppImgBusquedaTableAdapter();
+                    string searchString = txtSearch.Text;
+                    DataTable searchResults = index.GetData(searchString);
+                    searchResults = searchResults.AsEnumerable()
+                        .GroupBy(x => x.Field<string>("src"))
+                        .Select(y => y.First())
+                        .CopyToDataTable();
+                    foreach (DataRow result in searchResults.Rows)
+                    {
+                        main.InnerHtml += $@"
+                    <div class=""card cardContainer mx-4"">
+                        <img src={result["src"]} class = card-img-top/>
+                        <div class=""card-body"">
+                                <h3 class=""card-title"">{result["alt"]}</h3>               
+                        </div>
+                    </div>
+                ";
+                                    }
+                }
             }
             else
             {
                 main.Attributes["class"] = "overflow-hidden h100 d-flex justify-content-center";
                 main.InnerHtml += $@"<div class=""my-auto""><h1 class=""display-1"">Que problema...</h1><pre><p class=""pCustom"">Regrese a la página de <a class=""returnToMainLink"" href=""/frmSearch.aspx"">inicio</a></p></div>";
             }
+            
+
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -87,6 +117,19 @@ namespace Proyecto348
                 Response.Cookies["recentSearches"].Expires = DateTime.Now.AddDays(1);
 
             }
+            Session["SearchType"] = "Todo";
+            Response.Redirect("Resultados.aspx");
+        }
+
+        protected void lbAll_Click(object sender, EventArgs e)
+        {
+            Session["SearchType"] = "Todo";
+            Response.Redirect("Resultados.aspx");
+        }
+
+        protected void lbImage_Click(object sender, EventArgs e)
+        {
+            Session["SearchType"] = "Img";
             Response.Redirect("Resultados.aspx");
         }
     }

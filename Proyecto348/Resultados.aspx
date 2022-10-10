@@ -18,8 +18,8 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark searchBar" runat="server" id="searchNav">
-            <asp:LinkButton ID="lbAll" runat="server" CssClass="activeSO">Todos</asp:LinkButton>
-            <asp:LinkButton ID="lbImage" runat="server" CssClass="inactiveSO">Imagenes</asp:LinkButton>
+            <asp:LinkButton ID="lbAll" runat="server" CssClass="activeSO" OnClick="lbAll_Click">Todos</asp:LinkButton>
+            <asp:LinkButton ID="lbImage" runat="server" CssClass="inactiveSO" OnClick="lbImage_Click">Imagenes</asp:LinkButton>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="row my-2 my-lg-0">
                 <div class="col-md-4">
