@@ -15,20 +15,25 @@ namespace Proyecto348
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //searchNav.Visible = false;
-            if (Session["SearchType"] != null)
+            searchNav.Visible = false;
+            if (!IsPostBack)
             {
-                string searchType = (string)Session["SearchType"];
-                searchNav.Visible = true;
-                txtSearch.Text = (string)Session["SearchString"];
-                if (searchType == "Todo")
+                if (Session["SearchType"] != null)
                 {
-                    if (Session["searchResults"] != null)
+                    string searchType = (string)Session["SearchType"];
+                    searchNav.Visible = true;
+                    txtSearch.Text = (string)Session["SearchString"];
+                    if (searchType == "Todo")
                     {
-                        DataTable searchResults = (DataTable)Session["searchResults"];
-                        foreach (DataRow result in searchResults.Rows)
+                        main.Attributes["class"] = "main";
+                        if (Session["searchResults"] != null)
                         {
-                            main.InnerHtml += $@"
+                            DataTable searchResults = (DataTable)Session["searchResults"];
+                            if (searchResults.Rows.Count > 0)
+                            {
+                                foreach (DataRow result in searchResults.Rows)
+                                {
+                                    main.InnerHtml += $@"
     <div class=""card cardContainer mx-4"">
         <div class=""card-body"">
                 <h3 class=""card-title"">{result["title"]}</h3>
@@ -37,16 +42,39 @@ namespace Proyecto348
         </div>
     </div>
 ";
+                                }
+                            }
+                            else
+                            {
+                                main.Attributes["class"] = "overflow-hidden h100 d-flex justify-content-center";
+                                main.InnerHtml += $@"<div class=""my-auto""><h1 class=""display-1"">Sin resultados...</h1><pre><p class=""pCustom"">Regrese a la página de <a class=""returnToMainLink"" href=""/frmSearch.aspx"">inicio</a> o pruebe con <a class=""returnToMainLink"" href=""javascript: __doPostBack('lbImage', '')"">Imagenes</a></p></div>";
+                            }
+
+
+
+
                         }
-
-
-
+                    }
+                    else
+                    {
+                       
                     }
                 }
                 else
                 {
+                    main.Attributes["class"] = "overflow-hidden h100 d-flex justify-content-center";
+                    main.InnerHtml += $@"<div class=""my-auto""><h1 class=""display-1"">Que problema...</h1><pre><p class=""pCustom"">Regrese a la página de <a class=""returnToMainLink"" href=""/frmSearch.aspx"">inicio</a></p></div>";
+                }
+            }
+            if (Session["SearchType"] != null)
+            {
+                string searchType = (string)Session["SearchType"];
+
+                if (searchType == "Img" && !IsPostBack){
+                    txtSearch.Text = (string)Session["SearchString"];
+                    main.Attributes["class"] = "main";
                     ppImgBusquedaTableAdapter index = new ppImgBusquedaTableAdapter();
-                    string searchString = txtSearch.Text;
+                    string searchString = (string)Session["SearchString"];
                     DataTable searchResults = index.GetData(searchString);
                     searchResults = searchResults.AsEnumerable()
                         .GroupBy(x => x.Field<string>("src"))
@@ -58,31 +86,38 @@ namespace Proyecto348
                     <div class=""card cardContainer mx-4"">
                         <img src={result["src"]} class = card-img-top/>
                         <div class=""card-body"">
-                                <h3 class=""card-title"">{result["alt"]}</h3>               
+                                <p class="" descriptionText card-text"">{result["alt"]}</p>               
                         </div>
                     </div>
                 ";
-                                    }
+                    }
+                    lbAll.CssClass = "btn btn-outline-primary btnBuscarInactive";
+                    lbImage.CssClass = "btn btn-outline-primary btnBuscarActive";
                 }
-            }
-            else
-            {
-                main.Attributes["class"] = "overflow-hidden h100 d-flex justify-content-center";
-                main.InnerHtml += $@"<div class=""my-auto""><h1 class=""display-1"">Que problema...</h1><pre><p class=""pCustom"">Regrese a la página de <a class=""returnToMainLink"" href=""/frmSearch.aspx"">inicio</a></p></div>";
             }
             
 
-        }
+
+
+            }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             ppBusquedaTableAdapter index = new ppBusquedaTableAdapter();
             string searchString = txtSearch.Text;
             DataTable searchResults = index.GetData(searchString);
-            searchResults = searchResults.AsEnumerable()
-                .GroupBy(x => x.Field<string>("title"))
-                .Select(y => y.First())
-                .CopyToDataTable();
-            Session["searchResults"] = searchResults;
+            if (searchResults != null)
+            {
+                if (searchResults.Rows.Count > 0)
+                {
+                    searchResults = searchResults.AsEnumerable()
+                        .GroupBy(x => x.Field<string>("title"))
+                        .Select(y => y.First())
+                        .CopyToDataTable();
+                }
+                Session["searchResults"] = searchResults;
+
+            }
+
             if (Request.Cookies["recentSearches"] != null)
             {
                 string recentSearches = Request.Cookies["recentSearches"].Value;
@@ -118,18 +153,22 @@ namespace Proyecto348
 
             }
             Session["SearchType"] = "Todo";
+            Session["SearchString"] = txtSearch.Text;
+
             Response.Redirect("Resultados.aspx");
         }
 
         protected void lbAll_Click(object sender, EventArgs e)
         {
             Session["SearchType"] = "Todo";
+            Session["SearchString"] = txtSearch.Text;
             Response.Redirect("Resultados.aspx");
         }
 
         protected void lbImage_Click(object sender, EventArgs e)
         {
             Session["SearchType"] = "Img";
+            Session["SearchString"] = txtSearch.Text;
             Response.Redirect("Resultados.aspx");
         }
     }

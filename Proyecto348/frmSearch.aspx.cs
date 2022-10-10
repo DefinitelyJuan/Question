@@ -39,12 +39,19 @@ namespace Proyecto348
             ppBusquedaTableAdapter index = new ppBusquedaTableAdapter();
             string searchString = txtSearchString.Text;
             DataTable searchResults = index.GetData(searchString);
-            searchResults = searchResults.AsEnumerable()
-                .GroupBy(x => x.Field<string>("title"))
-                .Select(y => y.First())
-                .CopyToDataTable();
-            Session["searchResults"] = searchResults;
-            if(Request.Cookies["recentSearches"] != null)
+            if (searchResults != null)
+            {
+                if (searchResults.Rows.Count > 0)
+                {
+                    searchResults = searchResults.AsEnumerable()
+                        .GroupBy(x => x.Field<string>("title"))
+                        .Select(y => y.First())
+                        .CopyToDataTable();
+                }
+                Session["searchResults"] = searchResults;
+
+            }
+            if (Request.Cookies["recentSearches"] != null)
             {
                 string recentSearches = Request.Cookies["recentSearches"].Value;
                 List<string> recentSearchesList = recentSearches.Split(',').ToList();
